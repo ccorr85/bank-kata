@@ -10,6 +10,7 @@ import static junit.framework.Assert.assertEquals;
 public class CurrentAccountTest {
 
     private BankAccount currentAccount;
+    private double balance;
 
     @Before
     public void setup() {
@@ -18,23 +19,25 @@ public class CurrentAccountTest {
 
     @Test
     public void test_positiveCreditAccountIncreasesBalance() {
-        currentAccount.credit(10);
-
-        int balance = currentAccount.getBalance();
-        assertEquals("The account balance should be 10", balance, 10);
+        balance = currentAccount.credit(10.0);
+        assertEquals("The account balance should be 10", 10.0, balance);
     }
 
     @Test
     public void test_zeroCreditAccountDoesNotIncreaseBalance() {
-        currentAccount.credit(0);
-        int balance = currentAccount.getBalance();
-        assertEquals("The account balance should be 0", balance, 0);
+        balance = currentAccount.credit(0.00);
+        assertEquals("The account balance should be 0", 0.0, balance);
     }
 
     @Test
     public void test_negativeCreditAccountDoesNotDecreaseBalance() {
-        currentAccount.credit(-10);
-        int balance = currentAccount.getBalance();
-        assertEquals("The account balance should be 0", balance, 0);
+        balance = currentAccount.credit(-10);
+        assertEquals("The account balance should be 0", 0.0, balance);
+    }
+
+    @Test
+    public void test_doubleAmountCredit_AccountBalanceIncreased() {
+        balance = currentAccount.credit(10.50);
+        assertEquals("The account balance should be 10.50", balance, 10.50);
     }
 }

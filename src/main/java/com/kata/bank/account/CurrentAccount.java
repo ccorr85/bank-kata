@@ -2,17 +2,18 @@ package com.kata.bank.account;
 
 public class CurrentAccount implements BankAccount {
 
-    int balance = 0;
+    double balance = 0;
 
     @Override
-    public int getBalance() {
+    public double getBalance() {
         return balance;
     }
 
     @Override
-    public void credit(int money) {
+    public double credit(double money) {
         if (money > 0) {
             balance += money;
         }
+        return balance;
     }
 }
